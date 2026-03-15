@@ -1,0 +1,87 @@
+{
+  "tours": [
+    {
+      "id": "tour-mmrxnev7",
+      "title": "dfdfd",
+      "duration": "7",
+      "type": "journey",
+      "description": "fdfdfd",
+      "price": "100",
+      "featured": true,
+      "image": "images/1.jpeg"
+    },
+    {
+      "id": "tour-1",
+      "title": "Cultural Triangle Escape",
+      "duration": "6 days",
+      "type": "Signature � 6 days",
+      "description": "Ancient capitals, cave temples, and misty Kandy � ideal if it�s your first time on the island.",
+      "price": "890",
+      "featured": true,
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya_Fortress%2C_Sri_Lanka.jpg?width=1200"
+    },
+    {
+      "id": "tour-2",
+      "title": "Hill Country Tea Trails",
+      "duration": "7 days",
+      "type": "Nature � 7 days",
+      "description": "Scenic trains, cloud forests, and tea bungalows in Sri Lanka�s green heart.",
+      "price": "1150",
+      "featured": true,
+      "image": "images/2.jpeg"
+    },
+    {
+      "id": "tour-3",
+      "title": "Wild South & Ocean Blues",
+      "duration": "8 days",
+      "type": "Wildlife & sea � 8 days",
+      "description": "Responsible safaris in Yala and slow days between Mirissa and Galle.",
+      "price": "1280",
+      "featured": true,
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mirissa_Beach_Sri_Lanka.jpg?width=1200"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "g1",
+      "label": "Gallery image 1",
+      "category": "beaches",
+      "src": "images/1.jpeg"
+    },
+    {
+      "id": "g2",
+      "label": "Gallery image 2",
+      "category": "culture",
+      "src": "images/2.jpeg"
+    },
+    {
+      "id": "g3",
+      "label": "Gallery image 3",
+      "category": "wildlife",
+      "src": "images/3.jpeg"
+    }
+  ],
+  "blog": [
+    {
+      "id": "b-mmrxp0fm",
+      "title": "hello",
+      "category": "Travel tips",
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "b1",
+      "title": "10 things to taste in Colombo",
+      "category": "Travel tips",
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "b2",
+      "title": "A slow 12-day Sri Lanka loop",
+      "category": "Itinerary",
+      "published": true,
+      "featured": false
+    }
+  ]
+}
