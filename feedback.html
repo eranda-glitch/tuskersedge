@@ -180,27 +180,14 @@
         const renderCards = (videos) => {
           grid.innerHTML = videos
             .map(({ id, url }) => `
-              <blockquote
-                class="tiktok-embed min-h-[640px] w-full rounded-2xl border border-slate-200 bg-white"
-                cite="${escapeHtml(url)}"
-                data-video-id="${escapeHtml(id)}"
-                style="max-width: 605px; min-width: 325px;"
-              >
-                <section>
-                  <a href="${escapeHtml(url)}" target="_blank" rel="noopener">Watch this video on TikTok</a>
-                </section>
-              </blockquote>
+              <a href="${escapeHtml(url)}" target="_blank" rel="noopener"
+                class="flex min-h-[360px] w-full flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-slate-950 via-slate-800 to-jungle p-8 text-center text-white shadow-sm ring-1 ring-slate-200 hover:from-slate-900 hover:to-jungleLight">
+                <span class="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl text-slate-950 shadow-lg">▶</span>
+                <span class="text-lg font-semibold">Watch this video on TikTok</span>
+                <span class="mt-2 text-sm text-white/75">Open the video in TikTok</span>
+              </a>
             `)
             .join('');
-          if (!document.querySelector('script[data-tiktok-embed]')) {
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = 'https://www.tiktok.com/embed.js';
-            script.dataset.tiktokEmbed = 'true';
-            document.body.appendChild(script);
-          } else if (window.tiktokEmbed?.lib?.render) {
-            window.tiktokEmbed.lib.render();
-          }
         };
 
         try {
