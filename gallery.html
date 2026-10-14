@@ -4,25 +4,56 @@
     <meta charset="UTF-8" />
     <title>TuskersEdge | Gallery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: { jungle: '#064E3B', jungleLight: '#0F766E', sunset: '#F59E0B' },
-            fontFamily: {
-              heading: ['"Playfair Display"', 'serif'],
-              body: ['"Inter"', 'system-ui', 'sans-serif'],
-            },
-          },
-        },
-      };
-    </script>
+    <meta name="description" content="Explore TuskersEdge | Gallery with TuskersEdge, local Sri Lanka travel designers." />
+    <link rel="stylesheet" href="css/site.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-  </head>
+    <style>
+      .gallery-item {
+        cursor: zoom-in;
+        transition: transform 0.25s ease;
+      }
+      .gallery-item:hover {
+        transform: scale(1.02);
+      }
+      #gallery-lightbox-image {
+        cursor: zoom-in;
+      }
+      #gallery-lightbox-image.is-zoomed {
+        cursor: zoom-out;
+        transform: scale(1.6);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .gallery-item,
+        #gallery-lightbox-image {
+          transition: none;
+        }
+      }
+    </style>
+  
+    <link rel="canonical" href="https://tuskersedge.com/gallery.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="TuskersEdge | Gallery" />
+    <meta property="og:description" content="Explore TuskersEdge | Gallery with TuskersEdge, local Sri Lanka travel designers." />
+    <meta property="og:url" content="https://tuskersedge.com/gallery.html" />
+    <meta property="og:image" content="https://tuskersedge.com/assets/tuskersedge-social-card.webp" />
+    <meta property="og:image:alt" content="Sri Lanka travel with TuskersEdge" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TuskersEdge | Gallery" />
+    <meta name="twitter:description" content="Explore TuskersEdge | Gallery with TuskersEdge, local Sri Lanka travel designers." />
+    <meta name="twitter:image" content="https://tuskersedge.com/assets/tuskersedge-social-card.webp" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#064e3b" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TravelAgency","@id":"https://tuskersedge.com/#organization","name":"TuskersEdge","url":"https://tuskersedge.com","logo":"https://tuskersedge.com/assets/brand-mark.svg","image":"https://tuskersedge.com/assets/tuskersedge-social-card.webp","email":"tuskersedgesafari@gmail.com","telephone":"+94729258104","areaServed":{"@type":"Country","name":"Sri Lanka"},"sameAs":["https://www.booking.com/Pulse-cCBzek","https://www.tiktok.com/@nuwa_travels"]},{"@type":"WebPage","@id":"https://tuskersedge.com/gallery.html#webpage","url":"https://tuskersedge.com/gallery.html","name":"TuskersEdge | Gallery","description":"Explore TuskersEdge | Gallery with TuskersEdge, local Sri Lanka travel designers.","isPartOf":{"@id":"https://tuskersedge.com/#website"},"about":{"@id":"https://tuskersedge.com/#organization"},"primaryImageOfPage":"https://tuskersedge.com/assets/tuskersedge-social-card.webp"},{"@type":"WebSite","@id":"https://tuskersedge.com/#website","url":"https://tuskersedge.com","name":"TuskersEdge","publisher":{"@id":"https://tuskersedge.com/#organization"},"inLanguage":"en"}]}</script>
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="TuskersEdge" />
+</head>
   <body class="bg-slate-50 font-body text-slate-800">
     <!-- Navbar (same as index) -->
     <header class="fixed inset-x-0 top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-100">
@@ -30,9 +61,7 @@
         <a href="index.html" class="flex items-center gap-2">
           <div
             class="flex h-9 w-9 items-center justify-center rounded-full bg-jungle text-white font-heading text-xl"
-          >
-            T
-          </div>
+          >&#128024;</div>
           <div>
             <div class="font-heading text-xl tracking-wide text-jungle">
               TuskersEdge
@@ -49,6 +78,7 @@
           <a href="gallery.html" class="text-jungleLight">Gallery</a>
           <a href="blog.html" class="hover:text-jungleLight">Blog</a>
           <a href="about.html" class="hover:text-jungleLight">About</a>
+          <a href="feedback.html" class="hover:text-jungleLight">Feedback</a>
           <a href="contact.html" class="hover:text-jungleLight">Contact</a>
         </nav>
 
@@ -69,6 +99,7 @@
         <a href="gallery.html" class="block py-1.5">Gallery</a>
         <a href="blog.html" class="block py-1.5">Blog</a>
         <a href="about.html" class="block py-1.5">About</a>
+        <a href="feedback.html" class="block py-1.5">Feedback</a>
         <a href="contact.html" class="block py-1.5">Contact</a>
       </nav>
     </header>
@@ -129,7 +160,7 @@
         </div>
 
         <!-- Grid -->
-        <div class='grid gap-4 sm:grid-cols-2 md:grid-cols-3'>
+        <div id="gallery-grid" class='grid gap-4 sm:grid-cols-2 md:grid-cols-3'>
           <div
             data-category='beaches'
             class='gallery-item group relative h-52 overflow-hidden rounded-2xl bg-cover bg-center shadow-sm'
@@ -139,7 +170,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 1</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Beaches · Sri Lanka
+                Beaches - Sri Lanka
               </div>
             </div>
           </div>
@@ -152,7 +183,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 2</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Culture · Sri Lanka
+                Culture - Sri Lanka
               </div>
             </div>
           </div>
@@ -165,7 +196,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 3</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Wildlife · Sri Lanka
+                Wildlife - Sri Lanka
               </div>
             </div>
           </div>
@@ -178,7 +209,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 4</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Hills · Sri Lanka
+                Hills - Sri Lanka
               </div>
             </div>
           </div>
@@ -191,7 +222,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 5</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                City · Sri Lanka
+                City - Sri Lanka
               </div>
             </div>
           </div>
@@ -204,7 +235,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 6</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Beaches · Sri Lanka
+                Beaches - Sri Lanka
               </div>
             </div>
           </div>
@@ -217,7 +248,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 7</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Culture · Sri Lanka
+                Culture - Sri Lanka
               </div>
             </div>
           </div>
@@ -230,7 +261,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 8</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Wildlife · Sri Lanka
+                Wildlife - Sri Lanka
               </div>
             </div>
           </div>
@@ -243,7 +274,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 9</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Hills · Sri Lanka
+                Hills - Sri Lanka
               </div>
             </div>
           </div>
@@ -256,7 +287,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 10</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                City · Sri Lanka
+                City - Sri Lanka
               </div>
             </div>
           </div>
@@ -269,7 +300,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 11</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Beaches · Sri Lanka
+                Beaches - Sri Lanka
               </div>
             </div>
           </div>
@@ -282,7 +313,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 12</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Culture · Sri Lanka
+                Culture - Sri Lanka
               </div>
             </div>
           </div>
@@ -295,7 +326,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 13</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Wildlife · Sri Lanka
+                Wildlife - Sri Lanka
               </div>
             </div>
           </div>
@@ -308,7 +339,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 14</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Hills · Sri Lanka
+                Hills - Sri Lanka
               </div>
             </div>
           </div>
@@ -321,7 +352,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 15</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                City · Sri Lanka
+                City - Sri Lanka
               </div>
             </div>
           </div>
@@ -334,7 +365,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 16</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Beaches · Sri Lanka
+                Beaches - Sri Lanka
               </div>
             </div>
           </div>
@@ -347,7 +378,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 17</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Culture · Sri Lanka
+                Culture - Sri Lanka
               </div>
             </div>
           </div>
@@ -360,7 +391,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 18</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Wildlife · Sri Lanka
+                Wildlife - Sri Lanka
               </div>
             </div>
           </div>
@@ -373,7 +404,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 19</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Hills · Sri Lanka
+                Hills - Sri Lanka
               </div>
             </div>
           </div>
@@ -386,7 +417,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 20</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                City · Sri Lanka
+                City - Sri Lanka
               </div>
             </div>
           </div>
@@ -399,7 +430,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 21</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Beaches · Sri Lanka
+                Beaches - Sri Lanka
               </div>
             </div>
           </div>
@@ -412,7 +443,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 22</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Culture · Sri Lanka
+                Culture - Sri Lanka
               </div>
             </div>
           </div>
@@ -425,7 +456,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 23</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Wildlife · Sri Lanka
+                Wildlife - Sri Lanka
               </div>
             </div>
           </div>
@@ -438,7 +469,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 24</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Hills · Sri Lanka
+                Hills - Sri Lanka
               </div>
             </div>
           </div>
@@ -451,7 +482,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 25</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                City · Sri Lanka
+                City - Sri Lanka
               </div>
             </div>
           </div>
@@ -464,7 +495,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 26</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Beaches · Sri Lanka
+                Beaches - Sri Lanka
               </div>
             </div>
           </div>
@@ -477,7 +508,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 27</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Culture · Sri Lanka
+                Culture - Sri Lanka
               </div>
             </div>
           </div>
@@ -490,7 +521,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 28</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Wildlife · Sri Lanka
+                Wildlife - Sri Lanka
               </div>
             </div>
           </div>
@@ -503,7 +534,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 29</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Hills · Sri Lanka
+                Hills - Sri Lanka
               </div>
             </div>
           </div>
@@ -516,7 +547,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 30</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                City · Sri Lanka
+                City - Sri Lanka
               </div>
             </div>
           </div>
@@ -529,7 +560,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 31</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Beaches · Sri Lanka
+                Beaches - Sri Lanka
               </div>
             </div>
           </div>
@@ -542,7 +573,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 32</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Culture · Sri Lanka
+                Culture - Sri Lanka
               </div>
             </div>
           </div>
@@ -555,7 +586,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 33</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Wildlife · Sri Lanka
+                Wildlife - Sri Lanka
               </div>
             </div>
           </div>
@@ -568,7 +599,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 34</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Hills · Sri Lanka
+                Hills - Sri Lanka
               </div>
             </div>
           </div>
@@ -581,7 +612,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 35</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                City · Sri Lanka
+                City - Sri Lanka
               </div>
             </div>
           </div>
@@ -594,7 +625,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 36</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Beaches · Sri Lanka
+                Beaches - Sri Lanka
               </div>
             </div>
           </div>
@@ -607,7 +638,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 37</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Culture · Sri Lanka
+                Culture - Sri Lanka
               </div>
             </div>
           </div>
@@ -620,7 +651,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 38</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Wildlife · Sri Lanka
+                Wildlife - Sri Lanka
               </div>
             </div>
           </div>
@@ -633,7 +664,7 @@
             <div class='absolute inset-x-3 bottom-3 text-xs text-white opacity-0 group-hover:opacity-100 transition'>
               <div class='font-semibold'>Gallery image 39</div>
               <div class='text-[0.68rem] uppercase tracking-wide text-slate-200'>
-                Hills · Sri Lanka
+                Hills - Sri Lanka
               </div>
             </div>
           </div>
@@ -664,10 +695,11 @@
           </button>
 
           <div class="w-full max-w-5xl">
-            <div
+            <img
               id="gallery-lightbox-image"
-              class="h-[70vh] w-full rounded-2xl bg-cover bg-center shadow-2xl"
-            ></div>
+              class="h-[70vh] w-full rounded-2xl object-contain shadow-2xl transition-transform duration-300"
+              alt="Gallery image"
+            />
           </div>
 
           <button
@@ -706,21 +738,24 @@
               <ul class="mt-2 space-y-1">
                 <li><a href="about.html" class="hover:text-jungleLight">About</a></li>
                 <li><a href="faq.html" class="hover:text-jungleLight">FAQ</a></li>
+                <li><a href="feedback.html" class="hover:text-jungleLight">Feedback</a></li>
                 <li><a href="contact.html" class="hover:text-jungleLight">Contact</a></li>
               </ul>
             </div>
             <div>
               <div class="font-semibold text-slate-800">Contact</div>
               <ul class="mt-2 space-y-1">
-                <li>WhatsApp: +94 77 XXX XXXX</li>
-                <li>Email: hello@tuskersedge.com</li>
+                <li>WhatsApp: <a href="https://wa.me/94729258104" target="_blank" rel="noopener" class="hover:text-jungleLight">+94729258104</a></li>
+                <li>Email: <a href="mailto:tuskersedgesafari@gmail.com" class="hover:text-jungleLight">tuskersedgesafari@gmail.com</a></li>
+                <li>TikTok: <a href="https://www.tiktok.com/@nuwa_travels?_r=1&_t=ZS-94iDBHmU33V" target="_blank" rel="noopener" class="hover:text-jungleLight">@nuwa_travels</a></li>
                 <li>Based in Colombo, Sri Lanka</li>
               </ul>
             </div>
           </div>
         </div>
         <div class="mt-6 border-t border-slate-100 pt-4 text-xs text-slate-500">
-          © <span id="year-span"></span> TuskersEdge. All rights reserved.
+          <span class="mr-3"><a href="privacy.html" class="hover:text-jungleLight">Privacy Policy</a> &middot; <a href="terms.html" class="hover:text-jungleLight">Terms</a> &middot; <a href="image-credits.html" class="hover:text-jungleLight">Image Credits</a></span>
+          &copy; <span id="year-span"></span> TuskersEdge. All rights reserved.
         </div>
       </div>
     </footer>
@@ -814,7 +849,7 @@
           <textarea
             rows="2"
             class="w-full rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs outline-none focus:border-jungle focus:ring-1 focus:ring-jungle/50"
-            name="details" placeholder="Who you’re travelling with, budget range, special dates..."
+            name="details" placeholder="Who you're travelling with, budget range, special dates..."
           ></textarea>
         </div>
         <button
@@ -826,13 +861,86 @@
       </form>
     </div>
 
+    <script>
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function normalizeCategory(value) {
+        const v = String(value || '').trim().toLowerCase();
+        if (!v) return 'beaches';
+        if (v.includes('hill')) return 'hills';
+        if (v.includes('wild')) return 'wildlife';
+        if (v.includes('cult')) return 'culture';
+        if (v.includes('city')) return 'city';
+        return v;
+      }
+
+      function renderGalleryItems(items) {
+        const grid = document.getElementById('gallery-grid');
+        if (!grid) return;
+        if (!items.length) return;
+        grid.innerHTML = items
+          .map((item) => {
+            const category = normalizeCategory(item.category);
+            const label = item.label || 'Gallery image';
+            const src = item.src || '';
+            return `
+              <div
+                data-category="${escapeHtml(category)}"
+                class="gallery-item group relative h-52 overflow-hidden rounded-2xl bg-cover bg-center shadow-sm"
+                style="background-image: url('${escapeHtml(src)}')"
+              >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 transition group-hover:opacity-100"></div>
+                <div class="absolute inset-x-3 bottom-3 text-xs text-white opacity-0 transition group-hover:opacity-100">
+                  <div class="font-semibold">${escapeHtml(label)}</div>
+                  <div class="text-[0.68rem] uppercase tracking-wide text-slate-200">
+                    ${escapeHtml(category)} - Sri Lanka
+                  </div>
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+      }
+
+      fetch('/api/content')
+        .then((res) => res.json())
+        .then((payload) => {
+          const items = Array.isArray(payload.content?.gallery) ? payload.content.gallery : [];
+          renderGalleryItems(items);
+          if (typeof window.rebindGallery === 'function') {
+            window.rebindGallery();
+          } else {
+            window.__needsGalleryRebind = true;
+          }
+        })
+        .catch(() => {});
+    </script>
     <script src="js/main.js"></script>
     <script>
       const ys = document.getElementById('year-span');
       if (ys) ys.textContent = new Date().getFullYear();
     </script>
-  </body>
+    <script src="js/analytics.js" defer></script>
+  <script src="js/pwa.js" defer></script>
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 

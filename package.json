@@ -4,11 +4,36 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server.js"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check lib/database.js && node --check js/main.js && node --check js/admin.js && node --check js/content.js && node --check js/districts.js && node scripts/check-site.js",
+    "backup": "node scripts/backup.js",
+    "admin:reset": "node scripts/reset-admin-password.js",
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/site.css --minify",
+    "build": "npm run build:css",
+    "test:smoke": "node scripts/smoke-test.js",
+    "test:browsers": "node scripts/browser-check.js",
+    "test:performance": "node scripts/performance-check.js",
+    "test:pwa": "node scripts/pwa-check.js",
+    "test:email": "node scripts/email-test.js",
+    "search:verify": "node scripts/set-search-verification.js"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "dependencies": {
+    "better-sqlite3": "^13.0.3",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "nodemailer": "^6.9.13"
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "nodemailer": "^10.0.11",
+    "sanitize-html": "^2.17.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "lighthouse": "^13.5.0",
+    "playwright": "^1.55.1",
+    "tailwindcss": "^3.4.17"
   }
 }
