@@ -11,6 +11,12 @@
       "database_id": "772a4c80-0663-4271-88ef-afc76c0f31c3"
     }
   ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "tuskersedge-media"
+    }
+  ],
   "vars": {
     "SITE_URL": "https://tuskers-edge.com",
     "ADMIN_USER": "admin"
