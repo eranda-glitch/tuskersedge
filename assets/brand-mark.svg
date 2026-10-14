@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">TuskersEdge elephant mark</title>
+  <desc id="desc">A warm gold elephant silhouette inside a deep green circle.</desc>
+  <circle cx="256" cy="256" r="244" fill="#064e3b"/>
+  <path fill="#f59e0b" d="M136 185c31-43 76-65 135-65 77 0 130 49 130 119v72c0 30-18 55-45 66v-93c0-10-8-18-18-18s-18 8-18 18v107h-56V279h-70v112h-56v-91c-20-13-33-36-33-63 0-19 6-36 17-51l14-1Zm209 13a22 22 0 1 0 0 44 22 22 0 0 0 0-44Zm56 11c30 8 51 35 51 67 0 39-31 70-70 70v-40c17 0 30-13 30-30 0-14-9-25-22-29l11-38Z"/>
+  <path fill="#f8fafc" d="M157 188c-22 7-38 28-38 53 0 27 19 50 45 55v-39c-5-4-8-10-8-17 0-11 8-20 19-22l-18-30Z"/>
+</svg>
