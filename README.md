@@ -43,6 +43,27 @@ The deployment must provide persistent disk storage for `data/tuskersedge.db`,
 `data/tuskersedge.db-wal`, and uploaded files in `images/`. Do not deploy to an
 ephemeral serverless filesystem unless those paths are moved to managed storage.
 
+## Cloudflare deployment
+
+The repository now includes a Cloudflare Pages Functions adapter. It keeps the
+existing browser API paths (`/api/content`, `/api/contact`, `/api/login`, and
+the admin API) while storing records in D1. R2 is optional; without R2, the
+existing repository images work but new admin image uploads are disabled.
+
+1. Install Wrangler and authenticate: `npm install -g wrangler` then `wrangler login`.
+2. Create the D1 resource: `wrangler d1 create tuskersedge`.
+3. Copy the returned D1 database ID into `wrangler.jsonc` and set `SITE_URL`.
+4. Create the schema: `wrangler d1 execute tuskersedge --remote --file=schema.sql`.
+5. Seed the current public content: `npm run d1:seed`, then
+   `wrangler d1 execute tuskersedge --remote --file=d1-seed.sql`.
+6. Add the `ADMIN_PASSWORD` secret with
+   `wrangler pages secret put ADMIN_PASSWORD`.
+7. Connect the repository to Cloudflare Pages and deploy with `npm run cf:deploy`.
+
+The D1 resource is persistent; do not commit `.env`, passwords, or
+Cloudflare API tokens. Add the custom domain in Cloudflare Pages after the first
+successful deployment.
+
 ## Before launch
 
 - Confirm the production domain in `sitemap.xml`, `robots.txt`, and page canonical tags.

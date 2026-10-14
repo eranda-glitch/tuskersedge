@@ -1,0 +1,10 @@
+.env
+node_modules/
+data/*.db
+data/*.db-*
+data/messages.json
+backups/
+*.zip
+npm-debug.log*
+test-results/
+.wrangler/
