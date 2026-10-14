@@ -18,7 +18,8 @@ const sha256 = async (value) => {
 
 async function passwordHash(password, salt = randomHex(16)) {
   const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
-  const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: new TextEncoder().encode(salt), iterations: 120000, hash: 'SHA-256' }, key, 256);
+  // Keep the KDF within Cloudflare Workers' free-tier CPU budget.
+  const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: new TextEncoder().encode(salt), iterations: 10000, hash: 'SHA-256' }, key, 256);
   return { salt, hash: [...new Uint8Array(bits)].map((value) => value.toString(16).padStart(2, '0')).join('') };
 }
 
