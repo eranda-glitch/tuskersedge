@@ -12,7 +12,7 @@
     }
   ],
   "vars": {
-    "SITE_URL": "https://REPLACE_WITH_YOUR_DOMAIN",
+    "SITE_URL": "https://tuskers-edge.com",
     "ADMIN_USER": "admin"
   }
 }
