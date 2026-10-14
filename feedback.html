@@ -175,37 +175,51 @@
         const meta = document.getElementById('tiktok-feed-meta');
         if (!grid || !meta) return;
 
-        const fallback = ['7454053223180012808'];
-        const renderCards = (ids) => {
-          grid.innerHTML = ids
-            .map(
-              (id) => `
-                <iframe
-                  src="https://www.tiktok.com/embed/v2/${id}"
-                  class="h-[640px] w-full rounded-2xl border border-slate-200 bg-white"
-                  allowfullscreen
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  title="TikTok video ${id}"
-                ></iframe>
-              `
-            )
+        const fallback = [{ id: '7454053223180012808', url: 'https://www.tiktok.com/@nuwa_travels/video/7454053223180012808' }];
+        const escapeHtml = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+        const renderCards = (videos) => {
+          grid.innerHTML = videos
+            .map(({ id, url }) => `
+              <blockquote
+                class="tiktok-embed min-h-[640px] w-full rounded-2xl border border-slate-200 bg-white"
+                cite="${escapeHtml(url)}"
+                data-video-id="${escapeHtml(id)}"
+                style="max-width: 605px; min-width: 325px;"
+              >
+                <section>
+                  <a href="${escapeHtml(url)}" target="_blank" rel="noopener">Watch this video on TikTok</a>
+                </section>
+              </blockquote>
+            `)
             .join('');
+          if (!document.querySelector('script[data-tiktok-embed]')) {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.tiktok.com/embed.js';
+            script.dataset.tiktokEmbed = 'true';
+            document.body.appendChild(script);
+          } else if (window.tiktokEmbed?.lib?.render) {
+            window.tiktokEmbed.lib.render();
+          }
         };
 
         try {
           const res = await fetch('/api/content', { cache: 'no-store' });
           const data = await res.json();
-          const manualIds = Array.isArray(data?.content?.tiktokVideos)
+          const manualVideos = Array.isArray(data?.content?.tiktokVideos)
             ? data.content.tiktokVideos
-                .map((item) => String(item?.videoId || '').trim() || (String(item?.url || '').match(/\/video\/(\d+)/)?.[1] || ''))
+                .map((item) => {
+                  const url = String(item?.url || '').trim();
+                  const id = String(item?.videoId || '').trim() || (url.match(/\/video\/(\d+)/)?.[1] || '');
+                  return id ? { id, url: url || `https://www.tiktok.com/video/${id}` } : null;
+                })
                 .filter(Boolean)
             : [];
 
-          const uniqueIds = Array.from(new Set(manualIds)).slice(0, 9);
-          if (uniqueIds.length) {
-            renderCards(uniqueIds);
-            meta.textContent = `Showing ${uniqueIds.length} video${uniqueIds.length > 1 ? 's' : ''} from admin.`;
+          const uniqueVideos = Array.from(new Map(manualVideos.map((video) => [video.id, video])).values()).slice(0, 9);
+          if (uniqueVideos.length) {
+            renderCards(uniqueVideos);
+            meta.textContent = `Showing ${uniqueVideos.length} video${uniqueVideos.length > 1 ? 's' : ''} from admin.`;
             return;
           }
 
